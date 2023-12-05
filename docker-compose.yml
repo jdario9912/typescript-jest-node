@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    container_name: jest-typescript-node-dev
+    ports:
+      - ${DB_PORT_DEV}
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER_DEV}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD_DEV}
