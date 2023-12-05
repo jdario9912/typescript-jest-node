@@ -1,7 +1,7 @@
 import supertest, { Response } from "supertest";
 import app from "../app";
-import { projectDescription } from "../../utils/project-description";
-import { projectDescriptionTypeConIndex } from "../../types/types";
+import { projectDescription } from "../utils/project-description";
+import { projectDescriptionTypeConIndex } from "../types/types";
 
 const api = supertest(app);
 

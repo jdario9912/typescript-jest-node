@@ -1,5 +1,5 @@
 import express from "express";
-import { projectDescription } from "../utils/project-description";
+import { projectDescription } from "./utils/project-description";
 
 const app = express();
 

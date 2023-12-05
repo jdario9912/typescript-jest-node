@@ -1,4 +1,4 @@
-import pkg from "../package.json";
+import pkg from "../../package.json";
 import { projectDescriptionTypeConIndex } from "../types/types";
 
 const projectDescription: projectDescriptionTypeConIndex = {
