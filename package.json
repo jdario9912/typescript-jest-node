@@ -1,17 +1,18 @@
 {
   "name": "jest-typescript-node",
   "version": "1.0.0",
-  "description": "",
+  "description": "Api Rest que permite guardar notas, obtener una o todas.",
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
     "dev": "ts-node-dev src",
     "test": "jest",
+    "test:watch": "npm run test -- --watch",
     "lint": "eslint --ext .ts .",
     "start": "node build"
   },
   "keywords": [],
-  "author": "",
+  "author": "Joel Dario Muñoz",
   "license": "ISC",
   "devDependencies": {
     "@types/dotenv": "8.2.0",
@@ -35,7 +36,8 @@
       "/node_modules/",
       "/test/",
       "/build/"
-    ]
+    ],
+    "silent": false
   },
   "dependencies": {
     "dotenv": "16.3.1",
