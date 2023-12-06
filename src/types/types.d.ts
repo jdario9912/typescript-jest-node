@@ -1,7 +1,5 @@
 export type EnvironmentVariables = {
-  DB_URI_DEV: string;
-  DB_URI_PRODUCCION: string;
-  DB_URI_TEST: string;
+  DB_URI: string
 };
 
 export interface projectDescriptionType {
@@ -13,4 +11,10 @@ export interface projectDescriptionType {
 
 export interface projectDescriptionTypeConIndex extends projecDesciptionType {
   [key: string]: string;
+}
+
+export interface Nota {
+  content: string;
+  date: Date;
+  important: boolean;
 }

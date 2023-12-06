@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc",
     "dev": "docker-compose up -d && ts-node-dev src dev",
-    "test": "docker-compose up -d && jest test",
+    "test": "docker-compose up -d && jest test --detectOpenHandles",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint --ext .ts .",
     "start": "node build produccion"

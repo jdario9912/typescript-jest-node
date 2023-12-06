@@ -4,9 +4,9 @@ services:
   mongo:
     image: mongo
     restart: always
-    container_name: jest-typescript-node-dev
+    container_name: ${CONTAINER_NAME}
     ports:
-      - ${DB_PORT_DEV}
+      - ${DB_PORT}
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${DB_USER_DEV}
-      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD_DEV}
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}

@@ -2,10 +2,15 @@ import supertest, { Response } from "supertest";
 import app from "../app";
 import { projectDescription } from "../utils/project-description";
 import { projectDescriptionTypeConIndex } from "../types/types";
-
+import Note from "../schemas/notes.schema";
+import { notasIniciales } from "../utils/para-tests";
+import mongoose from "mongoose";
+import { mongoUri } from "../config";
 const api = supertest(app);
 
-beforeEach(() => null);
+beforeAll(() =>
+  mongoose.connect(mongoUri).catch((error) => console.log(error.message))
+);
 
 describe("GET /", () => {
   test("retorna status 200 y un json", async () => {
@@ -42,4 +47,30 @@ describe("GET /", () => {
   });
 });
 
-afterAll(() => null);
+describe("GET /api/notes", () => {
+  test("deberia retornar status 200 y un json", async () => {
+    await api
+      .get("/api/notes")
+      .expect(200)
+      .expect("Content-Type", /application\/json/);
+  });
+
+  test(`deberia retornar ${notasIniciales.length} notas`, async () => {
+    await Note.deleteMany({});
+
+    for (let i = 0; i < notasIniciales.length; i++) {
+      const nota = notasIniciales[i];
+
+      const nuevaNota = new Note(nota);
+      await nuevaNota.save();
+    }
+
+    const res = await api.get("/api/notes");
+
+    expect(res.body).toHaveLength(notasIniciales.length);
+  });
+});
+
+afterAll(() => {
+  mongoose.connection.close().catch(() => console.log("conexion cerrada"));
+});
