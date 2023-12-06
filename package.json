@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
-    "dev": "docker-compose up -d && ts-node-dev src dev",
-    "test": "docker-compose up -d && jest test --detectOpenHandles",
+    "dev": "docker-compose up -d && ts-node-dev src",
+    "test": "docker-compose up -d && jest",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint --ext .ts .",
-    "start": "node build produccion"
+    "start": "node build"
   },
   "keywords": [],
   "author": "Joel Dario Muñoz",
