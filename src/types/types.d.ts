@@ -1,5 +1,5 @@
 export type EnvironmentVariables = {
-  DB_URI: string
+  DB_URI: string;
 };
 
 export interface projectDescriptionType {

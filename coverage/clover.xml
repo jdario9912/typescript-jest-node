@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1701887392923" clover="3.2.0">
-  <project timestamp="1701887392923" name="All files">
-    <metrics statements="30" coveredstatements="29" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3" elements="35" coveredelements="33" complexity="0" loc="30" ncloc="30" packages="4" files="6" classes="6"/>
+<coverage generated="1701889823785" clover="3.2.0">
+  <project timestamp="1701889823786" name="All files">
+    <metrics statements="28" coveredstatements="27" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3" elements="33" coveredelements="31" complexity="0" loc="28" ncloc="28" packages="5" files="6" classes="6"/>
     <package name="src">
-      <metrics statements="14" coveredstatements="14" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="app.ts" path="/home/joel/Escritorio/jest-typescript-node/src/app.ts">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
@@ -13,16 +13,6 @@
         <line num="7" count="1" type="stmt"/>
         <line num="9" count="3" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-      </file>
-      <file name="config.ts" path="/home/joel/Escritorio/jest-typescript-node/src/config.ts">
-        <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.routers">
@@ -47,6 +37,17 @@
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.tests">
+      <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
+      <file name="config-test.ts" path="/home/joel/Escritorio/jest-typescript-node/src/tests/config-test.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.utils">

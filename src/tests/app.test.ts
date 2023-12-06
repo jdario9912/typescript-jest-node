@@ -5,11 +5,11 @@ import { projectDescriptionTypeConIndex } from "../types/types";
 import Note from "../schemas/notes.schema";
 import { notasIniciales } from "../utils/para-tests";
 import mongoose from "mongoose";
-import { mongoUri } from "../config";
+import { mongoUriTest } from "../tests/config-test";
 const api = supertest(app);
 
 beforeAll(() =>
-  mongoose.connect(mongoUri).catch((error) => console.log(error.message))
+  mongoose.connect(mongoUriTest).catch((error) => console.log(error.message))
 );
 
 describe("GET /", () => {
