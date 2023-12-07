@@ -18,3 +18,9 @@ export interface Nota {
   date: Date;
   important: boolean;
 }
+
+export type NotaRequest = Omit<Nota, "date">;
+
+export interface NotaGuardada extends Nota {
+  _id: string;
+}

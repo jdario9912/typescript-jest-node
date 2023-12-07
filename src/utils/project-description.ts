@@ -7,4 +7,5 @@ const projectDescription: projectDescriptionTypeConIndex = {
   description: JSON.stringify(pkg.description),
   author: JSON.stringify(pkg.author),
 };
+
 export { projectDescription };

@@ -4,6 +4,8 @@ import notesRouter from "./routers/notes.router";
 
 const app = express();
 
+app.use(express.json());
+
 app.use("/api/notes", notesRouter);
 
 app.get("/", (_req, res) => res.status(200).json(projectDescription));
