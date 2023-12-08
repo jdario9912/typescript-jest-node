@@ -53,7 +53,7 @@ describe("GET /api/notes", () => {
 
     await hlp.insertarNotasIniciales();
 
-    const res = await api.get("/api/notes");
+    const res = await hlp.getAllNotes();
 
     expect(res.body).toHaveLength(hlp.notasIniciales.length);
   });
@@ -67,10 +67,8 @@ describe("POST /api/notes", () => {
       .expect("Content-Type", /application\/json/);
   });
 
-  test(`devuelve ${
-    Object.keys(hlp.notaGuardada).length
-  } propiedades`, async () => {
-    const res = await api.post("/api/notes").send(hlp.notaDeRequest);
+  test(`devuelve ${hlp.cantPropiedadesNotaGuardada} propiedades de la tarea guardada`, async () => {
+    const res = await hlp.enviarNotaAGuardar(hlp.notaDeRequest);
 
     const body: NotaGuardada = res.body as NotaGuardada;
 
@@ -80,7 +78,7 @@ describe("POST /api/notes", () => {
   });
 
   test("retorna _id, date, content e important", async () => {
-    const res = await api.post("/api/notes").send(hlp.notaDeRequest);
+    const res = await hlp.enviarNotaAGuardar(hlp.notaDeRequest);
 
     const body: NotaGuardada = res.body as NotaGuardada;
 
@@ -95,15 +93,29 @@ describe("POST /api/notes", () => {
 
     await hlp.insertarNotasIniciales();
 
-    await api.post("/api/notes").send(hlp.notaDeRequest);
+    await hlp.enviarNotaAGuardar(hlp.notaDeRequest);
 
-    const res = await api.get("/api/notes");
+    const res = await hlp.getAllNotes();
 
     expect(res.body).toHaveLength(hlp.notasIniciales.length + 1);
   });
 });
 
-// DELETE /api/note/:id
+describe("DELETE /api/notes/:id", () => {
+  test("deberia eliminar una nota segun _id", async () => {
+    await hlp.deleteAllNotes();
+
+    const notaGuardada = await hlp.guardarNota(hlp.notaDeRequest);
+
+    const res = await api.delete(`/api/notes/${notaGuardada._id}`);
+
+    const notaEliminada = await hlp.getNotaPorId(notaGuardada._id);
+
+    expect(res.status).toBe(204);
+
+    expect(notaEliminada).toBeFalsy();
+  });
+});
 
 // PATCH /api/note/:id
 
