@@ -6,10 +6,15 @@ Aplicacion backend desarrollada en Node con Typescript y express.
 
 ## Objetivos
 
-1. Consolidar los conocimientos sobre Typescript.
-2. Implementar bases de datos Mongo.
+1. Consolidar conocimientos basicos de Typescript.
+2. Implementar una base de datos Mongo.
 3. Implementar contenedores Docker.
 4. Hacer test unitarios basicos con Supertest y Jest.
+
+## Por hacer
+
+* [ ] Implementar una base de datos relacional como Postgresql o MySQL.
+* [ ] Crear los modelos que realicen las acciones en los recursos para cada tipo de base de datos.
 
 ## Modo de uso
 
