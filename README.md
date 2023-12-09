@@ -9,7 +9,7 @@ Aplicacion backend desarrollada en Node con Typescript y express.
 1. Consolidar los conocimientos sobre Typescript.
 2. Implementar bases de datos Mongo.
 3. Implementar contenedores Docker.
-4. Hacer test unitarios con Supertest y Jest.
+4. Hacer test unitarios basicos con Supertest y Jest.
 
 ## Modo de uso
 

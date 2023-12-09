@@ -59,14 +59,33 @@ describe("GET /api/notes", () => {
   });
 });
 
-describe("POST /api/notes", () => {
-  test("retorna status 200 y un json", async () => {
-    await api
-      .post("/api/notes")
+describe("GET /api/notes/:id", () => {
+  test("deberia retornar una nota", async () => {
+    const notaGuardada = await hlp.guardarNota(hlp.notaDeRequest);
+
+    const res = await api
+      .get(`/api/notes/${notaGuardada._id}`)
       .expect(200)
       .expect("Content-Type", /application\/json/);
+
+    expect(res.body).not.toBeFalsy();
   });
 
+  test("si no encuentra la nota retorna status 404 y un mensaje", async () => {
+    const notaGuardada = await hlp.guardarNota(hlp.notaDeRequest);
+
+    await hlp.deleteAllNotes();
+
+    const res = await api
+      .get(`/api/notes/${notaGuardada._id}`)
+      .expect(404)
+      .expect("Content-Type", /application\/json/);
+
+    expect(res.body.mensaje).toBeDefined();
+  });
+});
+
+describe("POST /api/notes", () => {
   test(`devuelve ${hlp.cantPropiedadesNotaGuardada} propiedades de la tarea guardada`, async () => {
     const res = await hlp.enviarNotaAGuardar(hlp.notaDeRequest);
 
@@ -99,6 +118,17 @@ describe("POST /api/notes", () => {
 
     expect(res.body).toHaveLength(hlp.notasIniciales.length + 1);
   });
+
+  test("si no se envia content o important retorna status 501", async () => {
+    for (let i = 0; i < hlp.notasDeRequestInvalidas.length; i++) {
+      const nota = hlp.notasDeRequestInvalidas[i];
+
+      const res = await hlp.enviarNotaInvalidaAGuardar(nota);
+
+      expect(res.status).toBe(501);
+      expect(res.body.mensaje).toBeDefined();
+    }
+  });
 });
 
 describe("DELETE /api/notes/:id", () => {
@@ -112,12 +142,63 @@ describe("DELETE /api/notes/:id", () => {
     const notaEliminada = await hlp.getNotaPorId(notaGuardada._id);
 
     expect(res.status).toBe(204);
-
     expect(notaEliminada).toBeFalsy();
+  });
+
+  test("si no elimina la nota retorna status 501 y un mensaje", async () => {
+    const res = await api.delete(`/api/notes/asdfasdsdafdsafasd`).expect(501);
+
+    expect(res.body.mensaje).toBeDefined();
   });
 });
 
-// PATCH /api/note/:id
+describe("PATCH /api/notes/:id", () => {
+  test("deberia retornar id, content, important y updatedAt", async () => {
+    await hlp.deleteAllNotes();
+
+    const notaGuardada = await hlp.guardarNota(hlp.notaDeRequest);
+
+    const res = await api
+      .patch(`/api/notes/${notaGuardada._id}`)
+      .send({ content: hlp.notaContent })
+      .expect(200)
+      .expect("Content-Type", /application\/json/);
+    
+      console.log(res.body);
+    
+
+    expect(res.body.content).toBeDefined();
+    expect(res.body._id).toBeDefined();
+    expect(res.body.important).toBeDefined();
+    expect(res.body.updatedAt).toBeDefined();
+  });
+
+  test("deberia retornar status 501 si no encuentra la nota", async () => {
+    await hlp.deleteAllNotes();
+
+    await hlp.guardarNota(hlp.notaDeRequest);
+
+    const res = await api
+      .patch("/api/notes/asdfasfasdasdf")
+      .send({ content: hlp.notaContent })
+      .expect(501)
+      .expect("Content-Type", /application\/json/);
+
+    expect(res.body.mensaje).toBeDefined();
+  });
+
+  test("deberia retornar status 400 si no recibe content o important", async () => {
+    const notaGuardada = await hlp.guardarNota(hlp.notaDeRequest);
+
+    const res = await api
+      .patch(`/api/notes/${notaGuardada._id}`)
+      .send({ })
+      .expect(400)
+      .expect("Content-Type", /application\/json/);
+
+    expect(res.body.mensaje).toBeDefined();
+  });
+});
 
 afterAll(() => {
   dbConexionClose();

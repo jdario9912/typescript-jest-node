@@ -24,3 +24,7 @@ export type NotaRequest = Omit<Nota, "date">;
 export interface NotaGuardada extends Nota {
   _id: string;
 }
+
+export type NotaRequestInvalida = Omit<NotaRequest, "content" | "important">;
+
+export type NotaActualizadaRequest = Pick<Nota, "content" | "important">;
